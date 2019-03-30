@@ -8,6 +8,7 @@
 	Copyright: CC-BY-NC
 	Date:      January 2013 (beginning, then the project was paused when ads suddently stopped)
 	           October 2013 (continuation because these ads are back)
+	           March 2019 (adding the ones from PulsRadio Trance)
 */
 
 #include <sys/types.h>
@@ -28,9 +29,11 @@
 #define ICY_SIGNATURE "\nICY Info: "
 
 char is_an_ad(const char *trackdata){
-	if (strstr(trackdata, "insertionType='preroll'")){   return 'm'; }
-	if (strstr(trackdata, "insertionType='midroll'")){   return '>'; }
-	if (strstr(trackdata, "metadata='adswizzContext=")){ return '>'; }
+	if (strstr(trackdata, "insertionType='preroll'"))   { return 'm'; }
+	if (strstr(trackdata, "insertionType='midroll'"))   { return '>'; }
+	if (strstr(trackdata, "metadata='adswizzContext=")) { return '>'; }
+	if (strstr(trackdata, "Advert PulsRadio"))          { return '>'; }
+	if (strstr(trackdata, "Advert: PulsRadio"))         { return '>'; }
 	return 0;
 }
 
